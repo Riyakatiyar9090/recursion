@@ -1,0 +1,56 @@
+class Solution {
+  public:
+    // Function to sort an array using quick sort algorithm.
+    void quickSort(vector<int>& arr, int low, int high) {
+        // code here
+        int s=low;
+        int e=high;
+        if(s>=e) return;
+        // partition
+        int p=partition(arr,s,e);
+        quickSort(arr,s,p-1);
+        quickSort(arr,p+1,e);
+        
+    }
+
+  public:
+    // Function that takes last element as pivot, places the pivot element at
+    // its correct position in sorted array, and places all smaller elements
+    // to left of pivot and all greater elements to right of pivot.
+    int partition(vector<int>& arr, int low, int high) {
+        
+        // code here
+        int s=low;
+        int e=high;
+        int pindex=s;
+        int pelement=arr[s];
+        int count=0;
+        for(int i=s+1;i<=e;i++){
+            if(arr[i]<=pelement){
+                count++;
+            }
+        }
+        // swapping
+        int pivotindex=s+count;
+        swap(arr[pivotindex],arr[pindex]);
+        pindex=pivotindex;
+        // left me chhote & right me bde
+        int i=s;
+        int j=e;
+        while(i<pindex && j>pindex){
+            while(arr[i]<=pelement){
+                i++;
+            }
+        while(arr[j]>pelement){
+            j--;
+        }
+        // jb element swap krna ho
+        if(i<pindex && j>pindex){
+            swap(arr[i],arr[j]);
+        }
+        }
+        return pindex;
+        
+        // 
+    }
+};
