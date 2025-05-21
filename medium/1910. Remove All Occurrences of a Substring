@@ -1,0 +1,27 @@
+class Solution {
+public:
+    void helper(string& s,string part){
+        int found=s.find(part);
+        // if found
+        if(found!=string::npos){
+            string left=s.substr(0,found);
+            string right=s.substr(found+part.length(),s.size());
+            s=left+right;
+            helper(s,part);
+        }
+        else{
+            return;
+        }
+    }
+    string removeOccurrences(string s, string part) {
+    //     int pos=s.find(part);
+    //    while(pos!=string::npos){
+    //     s.erase(pos,part.length());
+    //     pos=s.find(part);
+    //    }
+    //    return s;
+    // using recursion
+    helper(s,part);
+    return s;
+    }
+};
